@@ -4,7 +4,7 @@ namespace App\Artists\Infrastructure\Symfony\Controller;
 
 use App\Artists\Domain\Entity\Song;
 use App\Artists\Domain\Repository\SongRepository;
-use Form\SongType;
+use App\Artists\Infrastructure\Symfony\Form\SongType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

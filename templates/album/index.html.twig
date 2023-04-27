@@ -1,0 +1,28 @@
+<h1>Album</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for album in albums %}
+        <tr>
+            <td>{{ album.name }}</td>
+            <td>
+                <a href="{{ path('app_album_show', {'id': album.id}) }}">Voir</a>
+                {% if is_granted('ROLE_ARTIST') %}
+                    <a href="{{ path('app_album_edit', {'id': album.id}) }}">Modifier</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="5">Playlist vide</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    <a href="{{ path('app_album_new') }}">Créer un album</a>

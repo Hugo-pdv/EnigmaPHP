@@ -2,27 +2,23 @@
 
 namespace App\Artists\Domain\Entity;
 
+use App\Artists\Domain\Repository\AlbumRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Id;
+use Symfony\Component\Uid\UuidV4;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: AlbumRepository::class)]
 class Album
 {
-    #[
-        Id,
-        Column(type: 'uuid', nullable:false),
-
-    ]
-    #[ORM\GeneratedValue]
-    private ?int $id = null;
+    #[ORM\Id]
+    #[ORM\Column(type: 'uuid')]
+    private string $id;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(targetEntity: Artist::class, inversedBy: 'artists')]
+    #[ORM\ManyToOne(targetEntity: Artist::class, inversedBy: 'albums')]
     private Artist $artist;
 
     #[ORM\ManyToMany(targetEntity: Song::class, inversedBy: 'albums')]
@@ -30,10 +26,11 @@ class Album
 
     public function __construct()
     {
+        $this->id = (string) (new UuidV4());
         $this->songs = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -80,5 +77,4 @@ class Album
 
         return $this;
     }
-
 }

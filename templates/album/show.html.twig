@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ album.name }}{% endblock %}
+
+{% block body %}
+    <h1>Titre</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Titre</th>
+            <td>{{ album.name }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_homepage') }}">Retour au site</a>
+
+    {% if is_granted('ROLE_ARTISTE') %}
+        <a href="{{ path('app_album_edit', {'id': album.id}) }}">edit</a>
+        {{ include('album/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

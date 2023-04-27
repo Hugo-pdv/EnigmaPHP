@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifié {{ album.name }}{% endblock %}
+
+{% block body %}
+    <h1>Modifier {{ album.name }}</h1>
+
+    {{ include('album/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_homepage') }}">Retour au site</a>
+
+    {{ include('album/_delete_form.html.twig') }}
+{% endblock %}
