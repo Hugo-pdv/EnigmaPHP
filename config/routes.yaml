@@ -1,3 +1,11 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+customers_controllers:
+    resource:
+      path: ../src/Customers/Infrastructure/Symfony/Controller/
+      namespace: App\Customers\Infrastructure\Symfony\Controller
+    type: attribute
+
+artists_controllers:
+    resource:
+      path: ../src/Artists/Infrastructure/Symfony/Controller/
+      namespace: App\Artists\Infrastructure\Symfony\Controller
+    type: attribute
